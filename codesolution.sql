@@ -1,4 +1,4 @@
-
+--CREATE OUR 6 TABLES USING EXPORT METHOD FROM QUICKDBD.COM
 CREATE TABLE departments (
     "dept_no" VARCHAR   NOT NULL,
     "dept_name" VARCHAR   NOT NULL,
@@ -64,7 +64,7 @@ CREATE TABLE titles (
 --verify table titles was created successfully
 SELECT * FROM titles
 
-
+---RUN THESE STATEMENTS AFTER IMPORTING CSV FOR EACH TABLE
 ALTER TABLE "dept_emp" ADD CONSTRAINT "fk_dept_emp_emp_no" FOREIGN KEY("emp_no")
 REFERENCES "employees" ("emp_no");
 
@@ -121,20 +121,29 @@ WHERE first_name = 'Hercules'
 AND last_name LIKE 'B%';
 
 -- 6. List all employees in the Sales department, including their employee number, last name, first name, and department name.
-
-
--- 7. List all employees in the Sales and Development departments, including their employee number, last name, first name, and department name.
---Somehow use the below code from question 4:
 SELECT departments.dept_name, dept_emp.emp_no, employees.first_name, employees.last_name
 FROM departments
 INNER join dept_emp ON
 dept_emp.dept_no = departments.dept_no
 INNER JOIN employees ON
-employees.emp_no = dept_emp.emp_no;
+employees.emp_no = dept_emp.emp_no
+WHERE departments.dept_name= 'Sales';
 
+-- 7. List all employees in the Sales and Development departments, including their employee number, last name, first name, and department name.
+--Somehow use the below code from question 4:
+--USE ORDERBY TO LIST ALL EMPLOYEES IN DEPARTMENT "DEVELOPMENT" FIRST THEN LIST ALL EMPLOYEES IN DEPARTMENT "SALES"
+--TRANSITION FROM DEVELOPMENT TO SALES OCCURS AT ROW 85708
+SELECT departments.dept_name, dept_emp.emp_no, employees.first_name, employees.last_name
+FROM departments
+INNER join dept_emp ON
+dept_emp.dept_no = departments.dept_no
+INNER JOIN employees ON
+employees.emp_no = dept_emp.emp_no
+WHERE departments.dept_name= 'Sales' OR departments.dept_name= 'Development'
+ORDER BY departments.dept_name='Development' DESC;
 
 -- 8. List the frequency count of employee last names (i.e., how many employees share each last name) in descending order.
 SELECT last_name, COUNT(last_name)
 FROM employees
 GROUP BY last_name
-ORDER BY COUNT(last_name) DESC
+ORDER BY COUNT(last_name) DESC;
