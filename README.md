@@ -5,6 +5,7 @@
 ![Screenshot (184)](https://user-images.githubusercontent.com/101612220/193148691-d008324e-ba46-4ff0-9e23-dd08540d6f6a.png)
 
 *snapshot preview of tables in PgAdmin*
+
 ![Screenshot (188)](https://user-images.githubusercontent.com/101612220/193148723-1b01ca78-cc50-4033-b0d5-21142a96f6de.png)
 
 *SQL Query retrieving employee number, last name, first name, sex, and salary*
